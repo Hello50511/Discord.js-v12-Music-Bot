@@ -1,19 +1,19 @@
-
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const yts = require('yt-search')
 const ytdl = require('ytdl-core')
+const { prefix, token } = require('./config.json')
 
 client.on("ready", () => {
     console.log(`Logged as ${client.user.tag}!`)
 });
 
 client.on("message", async(msg) => {
-    if(msg.content.startsWith("!p"||"!play")){
+    if(msg.content.startsWith(prefix+"p"||prefix+"play")){
         const args = msg.content.split(" ").slice(1)
         if(!args[0]){
             const embed2 = new Discord.MessageEmbed()
-            .setTitle('**사용법 `!p 노래이름`**')
+            .setTitle('**사용법 `'+prefix+'p 노래이름`**')
             .setColor('RED')
             msg.reply(embed2)
         }else if (msg.member.voice.channel) {
@@ -49,6 +49,45 @@ client.on("message", async(msg) => {
             msg.reply(embed)
         }
     }
+    if(msg.content === prefix+"나가"){
+        if(!msg.guild.me.voice.channel){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('**저는 이미 음성채널에 나간 상태입니다.**')
+            .setColor('RED')
+            msg.reply(embed)
+        }else if(!msg.member.voice.channel){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('**음성 채널에 먼저 접속해주세요!**')
+            .setColor('RED')
+            msg.reply(embed)
+        }else{
+            await msg.member.voice.channel.leave();
+            const embed = new Discord.MessageEmbed()
+            .setTitle('**안녕히계세요 여러분**')
+            .setColor('GREEN')
+            msg.reply(embed)
+        }
+    }
+    if(msg.content === prefix+"참가"){
+        if(!msg.member.voice.channel){
+            const embed = new Discord.MessageEmbed()
+            .setTitle('**음성 채널에 먼저 접속해주세요!**')
+            .setColor('RED')
+            msg.reply(embed)
+        }else{
+            await msg.member.voice.channel.join();
+        }
+    }
+    if(msg.content === prefix+"도움"){
+        const embed = new Discord.MessageEmbed()
+        .setColor(0x4169e1)
+        .setTitle("**"+client.user.username+" 도움말**")
+        .addField(prefix+'play <원하는 음악>','봇이 음악을 재생합니다',true)
+        .addField(prefix+'참가','봇이 음성채널에 참가합니다',true)
+        .addField(prefix+'나가','봇이 음성채널에서 퇴장합니다',true)
+        .setFooter("Open source by GDHello#5042","https://cdn.discordapp.com/avatars/764365162273964043/798ab406533795028ea109f0ae72096b.webp?size=80")
+        msg.reply(embed)
+    }
 })
 
-client.login(process.env.TOKEN)
+client.login(token)

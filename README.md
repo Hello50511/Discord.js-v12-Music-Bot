@@ -10,5 +10,11 @@
 
 <h2></h2>
 
+<h2>사용법</h2>
+<ol>
+    <li><strong>config.json</strong> 파일에 prefix는 접두사, token은 봇 토큰을 넣으면 된다</li>
+</ol>
+
+<h2></h2>
 
 <h6>Made By GDHello#5042</h6>
