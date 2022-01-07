@@ -10,13 +10,5 @@
 
 <h2></h2>
 
-<style>
-    h2{
-        color: #4169e1
-    }
-    ol{
-        color: orange
-    }
-</style>
 
 <h6>Made By GDHello#5042</h6>
