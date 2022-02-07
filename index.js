@@ -85,7 +85,7 @@ client.on("message", async(msg) => {
         .addField(prefix+'play <원하는 음악>','봇이 음악을 재생합니다',true)
         .addField(prefix+'참가','봇이 음성채널에 참가합니다',true)
         .addField(prefix+'나가','봇이 음성채널에서 퇴장합니다',true)
-        .setFooter("Open source by GDHello#5042","https://cdn.discordapp.com/avatars/764365162273964043/798ab406533795028ea109f0ae72096b.webp?size=80")
+        .setFooter("Open source by LCHHello#5042","https://cdn.discordapp.com/avatars/764365162273964043/798ab406533795028ea109f0ae72096b.webp?size=80")
         msg.reply(embed)
     }
 })
